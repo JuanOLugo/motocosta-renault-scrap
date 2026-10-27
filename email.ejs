@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Nuevo <%= nombreveh %> disponible</title>
+
+    <style>
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+
+            .mobile-padding {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .hero-title {
+                font-size: 28px !important;
+                line-height: 36px !important;
+            }
+
+            .vehicle-image {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .vehicle-title {
+                font-size: 22px !important;
+                line-height: 29px !important;
+            }
+
+            .card-content {
+                padding: 22px 18px !important;
+            }
+
+            .video-preview {
+                height: 230px !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="
+    margin:0;
+    padding:0;
+    background-color:#eeeeee;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#191919;
+">
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+        style="background-color:#eeeeee;">
+
+        <tr>
+            <td align="center" style="padding:30px 12px;">
+
+                <table role="presentation" class="email-container" width="640" cellpadding="0" cellspacing="0"
+                    border="0" style="
+                        width:100%;
+                        max-width:640px;
+                        background-color:#ffffff;
+                        border-collapse:collapse;
+                    ">
+
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="
+                                background-color:#171717;
+                                padding:30px 24px 26px;
+                            ">
+
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR18NLhnTn8BbnWapuNUcttZ3YS2LTQ_vYCB7SibTk3YYXh2rorkDPfnosw&s=10"
+                                alt="Renault" width="80" style="
+                                    display:block;
+                                    width:80px;
+                                    height:auto;
+                                    border:0;
+                                ">
+
+                            <p style="
+                                margin:18px 0 0;
+                                color:#ffffff;
+                                font-size:19px;
+                                font-weight:bold;
+                                letter-spacing:2px;
+                            ">
+                                RENAULT <%= nombreveh %>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <!-- FRANJA RENAULT -->
+                    <tr>
+                        <td height="7" bgcolor="#efdf00" style="
+                                background-color:#efdf00;
+                                font-size:0;
+                                line-height:0;
+                            ">
+                            &nbsp;
+                        </td>
+                    </tr>
+
+                    <!-- HERO -->
+                    <tr>
+                        <td class="mobile-padding" align="center" style="
+                                background-color:#f7f7f5;
+                                padding:48px 42px 44px;
+                            ">
+
+                            <p style="
+                                margin:0 0 15px;
+                                font-size:12px;
+                                letter-spacing:2.5px;
+                                font-weight:bold;
+                                color:#666666;
+                            ">
+                                NOVEDADES DE NUESTRO CATÁLOGO
+                            </p>
+
+                            <h1 class="hero-title" style="
+                                    margin:0;
+                                    font-size:36px;
+                                    line-height:43px;
+                                    font-weight:800;
+                                    color:#181818;
+                                ">
+                                ¡TU PRÓXIMO<br>
+                                RENAULT <%= nombreveh %><br>
+                                    TE ESPERA!
+                            </h1>
+
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0"
+                                style="margin:24px auto;">
+                                <tr>
+                                    <td width="65" height="5" bgcolor="#efdf00" style="font-size:0;line-height:0;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p style="
+                                margin:0;
+                                font-size:16px;
+                                line-height:26px;
+                                color:#555555;
+                            ">
+                                Hemos agregado nuevas opciones de
+                                <strong>
+                                    Renault <%= nombreveh %>
+                                </strong>
+                                a nuestro catálogo.
+
+                                Explora los vehículos disponibles y
+                                encuentra el que mejor se adapte a ti.
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <!-- SECCION VEHICULOS -->
+                    <tr>
+                        <td class="mobile-padding" style="padding:38px 32px 18px;">
+
+                            <h2 style="
+                                margin:0;
+                                font-size:24px;
+                                font-weight:bold;
+                                color:#191919;
+                            ">
+                                Vehículos disponibles
+                            </h2>
+
+                            <p style="
+                                margin:9px 0 0;
+                                font-size:14px;
+                                line-height:22px;
+                                color:#777777;
+                            ">
+                                Descubre las últimas incorporaciones
+                                de Renault <%= nombreveh %>.
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <!-- LISTADO DINAMICO -->
+                    <% if ( typeof dusters !=='undefined' && Array.isArray(dusters) && dusters.length> 0
+                        ) { %>
+
+                        <% dusters.forEach(function(item) { %>
+
+                            <% const mimeType=String(item.mime_type || '' ).toLowerCase().trim(); const
+                                isImage=mimeType.startsWith('image/'); const isVideo=mimeType.startsWith('video/');
+                                const mediaUrl=item.image || '' ; const vehicleUrl=item.link || mediaUrl; const
+                                vehicleName=item.title || nombreveh; %>
+
+                                <tr>
+                                    <td class="mobile-padding" style="padding:12px 32px 22px;">
+
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+                                            border="0" style="
+                                            width:100%;
+                                            border:1px solid #e5e5e5;
+                                            border-collapse:separate;
+                                            border-radius:8px;
+                                            background-color:#ffffff;
+                                        ">
+
+
+                                            <!-- CONTENIDO MULTIMEDIA -->
+                                            <tr>
+                                                <td align="center" style="background-color:#f0f0f0;">
+
+                                                    <% if (isImage && mediaUrl) { %>
+
+                                                        <!-- IMAGEN -->
+                                                        <a href="<%= vehicleUrl || mediaUrl %>" target="_blank"
+                                                            style="display:block;text-decoration:none;">
+
+                                                            <img class="vehicle-image" src="<%= mediaUrl %>"
+                                                                alt="<%= item.title %>" width="574" style="
+                        display:block;
+                        width:100%;
+                        max-width:574px;
+                        height:auto;
+                        border:0;
+                    ">
+                                                        </a>
+
+                                                        <% } else if (isVideo && mediaUrl) { %>
+
+                                                            <!-- VIDEO: VISTA PREVIA PARA CORREO -->
+                                                            <table role="presentation" width="100%" cellpadding="0"
+                                                                cellspacing="0" border="0">
+
+                                                                <tr>
+                                                                    <td align="center" valign="middle" bgcolor="#171717"
+                                                                        style="
+                            background-color:#171717;
+                            padding:65px 20px;
+                        ">
+
+                                                                        <a href="<%= mediaUrl %>" target="_blank" style="
+                                display:inline-block;
+                                width:76px;
+                                height:76px;
+                                line-height:76px;
+                                border-radius:50%;
+                                background-color:#efdf00;
+                                color:#171717;
+                                font-size:34px;
+                                text-decoration:none;
+                                text-align:center;
+                            ">
+                                                                            &#9654;
+                                                                        </a>
+
+                                                                        <p style="
+                            margin:25px 0 8px;
+                            color:#ffffff;
+                            font-size:22px;
+                            font-weight:bold;
+                        ">
+                                                                            VIDEO DISPONIBLE
+                                                                        </p>
+
+                                                                        <p style="
+                            margin:0;
+                            color:#bbbbbb;
+                            font-size:14px;
+                        ">
+                                                                            Haz clic para reproducir el video
+                                                                        </p>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+
+                                                            <% } else { %>
+
+                                                                <!-- RECURSO NO RECONOCIDO -->
+                                                                <div style="
+                padding:40px 20px;
+                text-align:center;
+                color:#777777;
+                font-size:14px;
+            ">
+                                                                    Vista previa no disponible
+                                                                </div>
+
+                                                                <% } %>
+
+                                                </td>
+                                            </tr>
+
+                                            <!-- INFORMACION DEL VEHICULO -->
+                                            <tr>
+                                                <td class="card-content" style="padding:25px 24px 28px;">
+
+                                                    <!-- ETIQUETA -->
+                                                    <table role="presentation" cellpadding="0" cellspacing="0"
+                                                        border="0">
+
+                                                        <tr>
+                                                            <td bgcolor="#efdf00" style="
+                                                                background-color:#efdf00;
+                                                                padding:7px 12px;
+                                                                font-size:11px;
+                                                                font-weight:bold;
+                                                                letter-spacing:1px;
+                                                                color:#181818;
+                                                            ">
+
+                                                                <% if (isVideo) { %>
+                                                                    VIDEO DISPONIBLE
+                                                                    <% } else { %>
+                                                                        NUEVA DISPONIBILIDAD
+                                                                        <% } %>
+
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+
+                                                    <!-- NOMBRE VEHICULO -->
+                                                    <h3 class="vehicle-title" style="
+                                                        margin:19px 0 10px;
+                                                        font-size:25px;
+                                                        line-height:31px;
+                                                        font-weight:bold;
+                                                        color:#181818;
+                                                    ">
+                                                        <%= vehicleName %>
+                                                    </h3>
+
+                                                    <!-- PRECIO -->
+                                                    <% if (item.price) { %>
+
+                                                        <p style="
+                                                        margin:0 0 22px;
+                                                        font-size:21px;
+                                                        line-height:28px;
+                                                        font-weight:bold;
+                                                        color:#222222;
+                                                    ">
+                                                            <%= item.price %>
+                                                        </p>
+
+                                                        <% } %>
+
+                                                            <!-- BOTON PRINCIPAL -->
+                                                            <% if (vehicleUrl) { %>
+
+                                                                <table role="presentation" cellpadding="0"
+                                                                    cellspacing="0" border="0">
+
+                                                                    <tr>
+                                                                        <td bgcolor="#efdf00" style="
+                                                                    background-color:#efdf00;
+                                                                    text-align:center;
+                                                                ">
+
+                                                                            <a href="<%= item.link %>" target="_blank"
+                                                                                style="
+      display:inline-block;
+      padding:15px 27px;
+      background-color:#efdf00;
+      color:#171717;
+      font-size:14px;
+      font-weight:bold;
+      text-decoration:none;
+      text-align:center;
+   ">
+                                                                                VER VEHÍCULO &#8594;
+                                                                            </a>
+
+
+
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </table>
+
+                                                                <% } %>
+
+                                                </td>
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <% }); %>
+
+                                    <% } else { %>
+
+                                        <!-- SIN VEHICULOS -->
+                                        <tr>
+                                            <td align="center" class="mobile-padding" style="
+                                    padding:35px 32px 55px;
+                                    color:#666666;
+                                    font-size:15px;
+                                    line-height:24px;
+                                ">
+
+                                                No hay vehículos Renault
+                                                <%= nombreveh %>
+                                                    disponibles por el momento.
+
+                                            </td>
+                                        </tr>
+
+                                        <% } %>
+
+                                            <!-- MENSAJE FINAL -->
+                                            <tr>
+                                                <td align="center" class="mobile-padding" style="
+                                background-color:#f7f7f5;
+                                padding:35px 32px;
+                            ">
+
+                                                    <h2 style="
+                                margin:0 0 12px;
+                                font-size:23px;
+                                line-height:30px;
+                                color:#171717;
+                            ">
+                                                        Encuentra tu próximo Renault
+                                                        <%= nombreveh %>
+                                                    </h2>
+
+                                                    <p style="
+                                margin:0;
+                                font-size:14px;
+                                line-height:24px;
+                                color:#606060;
+                            ">
+                                                        Conoce las opciones disponibles y descubre
+                                                        el vehículo ideal para ti.
+                                                    </p>
+
+                                                </td>
+                                            </tr>
+
+                                            <!-- FOOTER -->
+                                            <tr>
+                                                <td align="center" style="
+                                background-color:#171717;
+                                padding:28px 24px;
+                            ">
+
+                                                    <p style="
+                                margin:0;
+                                color:#efdf00;
+                                font-size:17px;
+                                font-weight:bold;
+                                letter-spacing:2px;
+                            ">
+                                                        RENAULT
+                                                    </p>
+
+                                                    <p style="
+                                margin:12px 0 0;
+                                color:#cccccc;
+                                font-size:12px;
+                                line-height:20px;
+                            ">
+                                                        Novedades de nuestro catálogo de vehículos.
+                                                    </p>
+
+                                                    <p style="
+                                margin:15px 0 0;
+                                color:#999999;
+                                font-size:11px;
+                            ">
+                                                        Este es un mensaje informativo.
+                                                    </p>
+
+                                                </td>
+                                            </tr>
+
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
